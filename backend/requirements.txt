@@ -1,0 +1,16 @@
+configparser
+flask
+Flask-Cors
+flask-log-request-id
+Flask-SQLAlchemy
+jinja2
+pandas
+pymysql
+python-http-client
+python-jose
+requests
+simplejson
+SQLAlchemy
+watchtower
+workalendar
+wheel
