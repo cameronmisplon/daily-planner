@@ -38,16 +38,16 @@ def get_all_tasks(username: str) -> list[DailyTasks]:
     
     return daily_tasks_dao.get_daily_tasks(user.id)
 
-def mark_task_as_completed(task_id) -> None:
+def mark_task_as_completed(task_id: int, completed: bool) -> None:
     task: DailyTasks = daily_tasks_dao.get_task_by_id(task_id)
 
     if task is None:
         raise Exception()
     
-    task.completed = True
+    task.completed = completed
     DB.session.commit()
 
-def delete_task(task_id) -> None:
+def delete_task(task_id: int) -> None:
     task: DailyTasks = daily_tasks_dao.get_task_by_id(task_id)
 
     if task is None:

@@ -6,6 +6,7 @@ from flask_log_request_id import RequestID, RequestIDLogFilter, current_request_
 
 from daily_tasks.daily_tasks_api import DAILY_TASKS_API
 from repo.models import DB
+from users import users_api
 
 def create_app(dbuser, dbpswd, dbhost, dbname):
     app = Flask(__name__)
@@ -31,6 +32,7 @@ def create_app(dbuser, dbpswd, dbhost, dbname):
 def register_blueprints_and_setup_app(app):
     CORS(app)
     app.register_blueprint(DAILY_TASKS_API)
+    app.register_blueprint(USER_API)
     DB.init_app(app)
 
 class CustomJSONEncoder(JSONEncoder):

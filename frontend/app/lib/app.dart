@@ -1,3 +1,13 @@
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import 'package:app/routes/router.dart';
+import 'package:app/services/locator.dart';
+import 'package:app/services/navigation_service.dart';
+import 'package:app/viewmodels/user_model.dart';
+import 'package:app/viewmodels/tasks_model.dart';
+
 class DailyTasksApp extends StatelessWidget {
   final String startRoute;
 
@@ -21,12 +31,11 @@ class DailyTasksApp extends StatelessWidget {
         ],
         child: MaterialApp(
             debugShowCheckedModeBanner: false,
-            title: Globals.appTitle,
-            theme: theme(),
+            theme: ThemeData.dark(),
             locale: DevicePreview.locale(context),
             builder: DevicePreview.appBuilder,
             navigatorKey: locator<NavigationService>().navigatorKey,
-            onGenerateRoute: router.generateRoute,
+            onGenerateRoute: generateRoute,
             initialRoute: startRoute),
       ),
     );

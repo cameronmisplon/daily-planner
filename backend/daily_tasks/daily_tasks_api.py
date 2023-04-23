@@ -29,7 +29,7 @@ def get_tasks(username: str):
 def mark_as_complete():
     data = request.json
     try:
-        daily_tasks_service.mark_task_as_completed(data["id"])
+        daily_tasks_service.mark_task_as_completed(data["id"], data["completed"])
     except Exception:
         return {}, 400
     
