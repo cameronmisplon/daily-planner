@@ -7,6 +7,8 @@ from flask_log_request_id import RequestID, RequestIDLogFilter, current_request_
 from daily_tasks.daily_tasks_api import DAILY_TASKS_API
 from repo.models import DB
 from users import users_api
+from users.users_api import USERS_API
+
 
 def create_app(dbuser, dbpswd, dbhost, dbname):
     app = Flask(__name__)
@@ -29,11 +31,13 @@ def create_app(dbuser, dbpswd, dbhost, dbname):
 
     return app
 
+
 def register_blueprints_and_setup_app(app):
     CORS(app)
     app.register_blueprint(DAILY_TASKS_API)
-    app.register_blueprint(USER_API)
+    app.register_blueprint(USERS_API)
     DB.init_app(app)
+
 
 class CustomJSONEncoder(JSONEncoder):
     def default(self, obj):
@@ -41,5 +45,6 @@ class CustomJSONEncoder(JSONEncoder):
             # Convert decimal instances to strings.
             return float(obj)
         return super(CustomJSONEncoder, self).default(obj)
-    
+
+
 app = create_app("root", "cameron16", "localhost", "daily_planner")
